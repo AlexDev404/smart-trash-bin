@@ -32,7 +32,7 @@ while True:
 
     print('Distance: ', distance_as_inches, 'inch')
     if D_THRESH >= distance_as_inches > 0:
-        my_servo.write(70)
+        my_servo.write(60)
         print("OPEN") # This opens the trash can
         wants_time_out = True
     else:
