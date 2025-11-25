@@ -12,7 +12,7 @@ from machine import Pin, PWM
 # GPIO pin connected the PWM wire of the servo
 D_THRESH = 8 # Distance threshold in inches
 TIMEOUT_S = 3  # Timeout duration in seconds
-my_servo = Servo(pin_id=16)
+my_servo = Servo(pin_id=18)
 trigger_pin = Pin(14, Pin.OUT)
 echo_pin = Pin(15, Pin.IN)
 sensor = HCSR04(trigger_pin=trigger_pin, echo_pin=echo_pin, echo_timeout_us=100000)
@@ -39,7 +39,7 @@ while True:
         wants_time_out = True
     else:
         if wants_time_out:
-            # buzzer_play(1000, 200)
+            buzzer_play(1000, 200)
             print("TIMEOUT (3s)")
             time.sleep(TIMEOUT_S)
             wants_time_out = False
