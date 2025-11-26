@@ -6,7 +6,7 @@ from hcsr04 import HCSR04
 
 # Create our Servo object, assigning the
 # GPIO pin connected the PWM wire of the servo
-D_THRESH = 8 # Distance threshold in inches
+D_THRESH = 8  # Distance threshold in inches
 TIMEOUT_S = 3  # Timeout duration in seconds
 my_servo = Servo(pin_id=18)
 trigger_pin = Pin(14, Pin.OUT)
@@ -35,13 +35,18 @@ while True:
     print('Distance: ', distance_as_inches, 'inch')
     if D_THRESH >= distance_as_inches > 0:
         my_servo.write(60)
-        print("OPEN") # This opens the trash can
+        print("OPEN")  # This opens the trash can
         wants_time_out = True
         led_1_pin.value(1)
         led_2_pin.value(0)
     else:
         if wants_time_out:
-            buzzer_play(1000, 2000)
+            # buzzer_play(1000, 2000)
+            buzzer.resume()
+            for _ in range(100):
+                buzzer.tick()
+                time.sleep(0.03)
+            buzzer.stop()
             print("TIMEOUT (3s)")
             time.sleep(TIMEOUT_S)
             wants_time_out = False
