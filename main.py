@@ -7,7 +7,7 @@ from hcsr04 import HCSR04
 # Create our Servo object, assigning the
 # GPIO pin connected the PWM wire of the servo
 D_THRESH = 8  # Distance threshold in inches
-TIMEOUT_S = 3  # Timeout duration in seconds
+TIMEOUT_S = 2  # Timeout duration in seconds
 my_servo = Servo(pin_id=18)
 trigger_pin = Pin(14, Pin.OUT)
 echo_pin = Pin(15, Pin.IN)
@@ -47,7 +47,7 @@ while True:
                 buzzer.tick()
                 time.sleep(0.03)
             buzzer.stop()
-            print("TIMEOUT (3s)")
+            print(f"TIMEOUT ({TIMEOUT_S}s)")
             time.sleep(TIMEOUT_S)
             wants_time_out = False
         led_1_pin.value(0)
